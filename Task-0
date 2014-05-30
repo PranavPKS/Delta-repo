@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Moving Object along a Circle</title>
+<style type="text/css">
+h2
+{
+color:red;
+}
+button
+{
+font-size:20px;
+background-color:#33CCFF;
+color:white;
+box-shadow: 0px 0px 5px #888888;
+}
+
+#circle
+{
+	left: 650px; 
+	top: 300px;
+	position : relative;
+	width : 40px;
+	height : 40px;
+	border-radius : 100px;
+	background:white;
+	border:5px solid black;
+	
+}
+
+</style>
+<script type="text/javascript">
+	
+			m=1;
+			r=180;
+			t=10;
+	function rot()
+	{		
+	var x=document.getElementById("circle");
+	x.style.top = 300+r*Math.sin(2*Math.PI*m/180)+'px';
+	x.style.left = 650+r*Math.cos(2*Math.PI*m/180)+'px';
+	if(m==180)
+		m=1;
+	else
+		m++;
+	setTimeout(rot,t);
+	}
+	function increase()
+	{
+		t-=5;
+	}
+
+	function decrease()
+	{
+		t+=5;
+	}
+	</script>
+	</head>
+	<body onload="rot()">
+
+	
+	<div>
+	<center><h2>Circle</h2><br><br><b>Speed:</b>&nbsp;&nbsp;
+	<button onclick="increase()">+</button>
+	<button onclick="decrease()">-</button></center>
+	</div>
+	
+		<div id="circle" onclick="rot()" ></div>
+	
+</body>
+
+</html>
