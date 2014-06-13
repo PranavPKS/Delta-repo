@@ -1,0 +1,166 @@
+<!--coded by PRANAV-->
+<!doctype HTML>
+<html>
+<head>
+<title>A Simple TEXT Editor</title>
+<style>
+input
+{
+background-color:#33CCFF;
+color:white;
+box-shadow: 0px 0px 5px #888888;
+}
+iframe
+{
+border:solid 1px;
+box-shadow: 0px 0px 5px #888888;
+width:500px; 
+height:200px;
+}
+h1
+{
+font-size:2em;
+color:#005CE6;
+}
+.c1
+{
+height:21px; 
+width:21px;
+}
+</style>
+</head>
+<body>
+<center>
+<h1>Simple Text Editor</h1>
+<div style="width:500px; text-align:center; margin-bottom:10px ">
+<input type="button" id="bold" class="c1" style="font-weight:bold;" value="B" onClick="fontEdit('bold')" />
+<input type="button" id="italic" class="c1" style="font-style:italic;" value="I" onClick="fontEdit('italic')" />
+<input type="button" id="underline" class="c1" style="text-decoration:underline;" value="U" onClick="fontEdit('underline')" /> | 
+<input type="button" class="c1" value="L" onClick="fontEdit('justifyleft')" title="align left" />
+<input type="button" class="c1" value="C" onClick="fontEdit('justifycenter')" title="center" />
+<input type="button" class="c1" value="R" onClick="fontEdit('justifyright')" title="align right" /> | 
+<select id="fonts" onChange="fontEdit('fontname',this[this.selectedIndex].value)">
+   <option value="Arial">Arial</option>
+   <option value="Comic Sans MS">Comic Sans MS</option>
+   <option value="Courier New">Courier New</option>
+   <option value="Monotype Corsiva">Monotype</option>
+   <option value="Tahoma">Tahoma</option>
+   <option value="Times">Times</option>
+</select>
+<select id="size" onChange="fontEdit('fontsize',this[this.selectedIndex].value)">
+   <option value="1">1</option>
+   <option value="2">2</option>
+   <option value="3">3</option>
+   <option value="4">4</option>
+   <option value="5">5</option>
+   <option value="6">6</option>
+   <option value="7">7</option>
+</select>
+<select id="color" onChange="fontEdit('ForeColor',this[this.selectedIndex].value)">
+   <option value="black">black</option>
+   <option style="color:red;" value="red">red</option>
+   <option style="color:blue;" value="blue">blue</option>
+   <option style="color:green;" value="green">green</option>
+   <option style="color:pink;" value="pink">pink</option>
+</select> | 
+<br>
+<input type="button" class="c1" value="1" onClick="fontEdit('insertorderedlist')" title="Numbered List" />
+<input type="button" class="c1" value="*" onClick="fontEdit('insertunorderedlist')" title="Bullets List" />&nbsp;|
+<input type="button" class="c1" value="<-" onClick="fontEdit('outdent')" title="Outdent" />
+<input type="button" class="c1" value="->" onClick="fontEdit('indent')" title="Indent" />&nbsp;|
+<input type="button" style="height:21px; width:40px;"value="Para" onClick="fontEdit('InsertParagraph')" title="Paragraph" />&nbsp;|
+<input type="button" id="dold" style="height:21px; width:70px; font-weight:bold;" value="DoLd" onClick="dold()" />
+<input type="button" id="ditalics" style="height:21px; width:70px;  font-style:italic;" value="DiTaLiCs" onClick="ditalics()" />&nbsp;|
+
+</div>
+<iframe id="textEditor" name="textEditor">
+</iframe>
+</center>
+<script type="text/javascript">
+<!--
+textEditor.document.designMode="on";
+textEditor.document.open();
+textEditor.document.write('<head><style type="text/css">body{ font-family:arial; font-size:13px; }</style> </head>');
+textEditor.document.close();
+
+function fontEdit(x,y)
+{
+   textEditor.document.execCommand(x,"",y);
+   textEditor.focus();
+}
+function dold()
+{
+
+
+var y=window.prompt("Enter text to make it DoLd")
+
+var n = y.length;
+var a = [];
+
+for(var i=0;i<n;i++)    
+{
+a[i]=y[i];
+
+if(i%2 == 0)
+{
+a[i]=y[i].toUpperCase().bold();
+
+}
+else
+a[i]=y[i].toLowerCase().bold();
+}
+a.toString();
+for(var z=0;z < n; z++)
+{
+var h= document.getElementById('textEditor').contentWindow.document.body.innerHTML;
+var ifrm = document.getElementById('textEditor');
+ifrm = (ifrm.contentWindow) ? ifrm.contentWindow : (ifrm.contentDocument.document) ? ifrm.contentDocument.document : ifrm.contentDocument;
+ifrm.document.open();
+if(a[z] != '')
+{
+var con = h + a[z];
+ifrm.document.write(con);
+}
+ifrm.document.close();
+}
+}
+function ditalics()
+{
+
+
+var y=window.prompt("Enter text to make it DiTaLiCs")
+
+var n = y.length;
+var a = [];
+
+for(var i=0;i<n;i++)    
+{
+a[i]=y[i];
+
+if(i%2 == 0)
+{
+a[i]=y[i].toUpperCase().italics();
+
+}
+else
+a[i]=y[i].toLowerCase().italics();
+}
+a.toString();
+for(var z=0;z < n; z++)
+{
+var h= document.getElementById('textEditor').contentWindow.document.body.innerHTML;
+var ifrm = document.getElementById('textEditor');
+ifrm = (ifrm.contentWindow) ? ifrm.contentWindow : (ifrm.contentDocument.document) ? ifrm.contentDocument.document : ifrm.contentDocument;
+ifrm.document.open();
+if(a[z] != '')
+{
+var con = h + a[z];
+ifrm.document.write(con);
+}
+ifrm.document.close();
+}
+}
+-->
+</script>
+</body>
+</html>
